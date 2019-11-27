@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>racing car</title>
+    <script src="guns.js"></script>
+    <script src="chicken.js"></script>
+    <script src="bullet.js"></script>
+</head>
+<body onkeydown="shootGuns.moveGuns(event)">
+<img src="img/sungga.png" style="display: none"/>
+<img src="img/anhga.png" style="display: none"/>
+<img id="bullet" src="img/bullet.png" style="display: none">
+<canvas id="myCanvas" width="500px" height="570px" style="border: 1px solid black"></canvas>
+<script>
+
+   let canvas = document.getElementById("myCanvas");
+   let ctx = canvas.getContext("2d");
+   let arrChick = [];
+   let shootGuns = new ShootGuns(canvas);
+   shootGuns.begin();
+   let multiChick = new MultiChicken(canvas);
+   multiChick.createMultiChicken();
+   arrChick = multiChick.arrChicken;
+
+   function moveMultiChicken() {
+       ctx.clearRect(0,0,canvas.width,canvas.height);
+       shootGuns.begin();
+       for (let i = 0; i < arrChick.length; i++) {
+           arrChick[i].drawChicken();
+           arrChick[i].moveDown();
+       }
+   }
+
+   let play = setInterval(moveMultiChicken,10);
+
+
+</script>
+</body>
+</html>
