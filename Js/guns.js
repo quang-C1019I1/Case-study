@@ -4,7 +4,7 @@ let Guns = function (x, y,width,height, speed,canvas) {
     this.speed = speed;
     this.width =width;
     this.height=height;
-    this.orientation = "down";
+    this.count = "down";
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
 
@@ -16,7 +16,7 @@ let Guns = function (x, y,width,height, speed,canvas) {
 
 
     this.move = function () {
-        switch (this.orientation) {
+        switch (this.count) {
             case "right":
                 if (this.x <= canvas.width-50)
                     this.x += this.speed;
@@ -43,31 +43,32 @@ let ShootGuns = function (canvas) {
     } ;
 
     this.moveGuns = function (event) {
-        let orientation = 0;
+        let count = 0;
         switch (event.which) {
             case 37:
-                orientation = "left";
+                count = "left";
                 break;
             case 39:
-                orientation = "right";
+                count = "right";
                 break;
             case 32:
-                orientation="shootUp";
+                count="shootUp";
         }
-        if(orientation) {
-            this.guns.orientation = orientation;
+        if(count) {
+            this.guns.count = count;
             this.guns.move();
             this.updateGuns();
         }
     }
 };
 let MultiBullet = function (canvas) {
-    let bullets=[]
-  let bullet=new Bullet(this.x,this.y,6,11,10,this.canvas)
+    let bullets=[];
+    let image = new Image();
+    image.src = "img/bullet.png";
+    let bullet=new Bullet(image,this.x,this.y,6,11,10,this.canvas)
     bullets.push(bullet);
     bullet.drawBullet();
     bullet.move();
-    console.log(bullets)
 }
 
 

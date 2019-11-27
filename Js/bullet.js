@@ -1,4 +1,4 @@
-let Bullet = function (x, y, width, height, speed,image,canvas) {
+let Bullet = function (image,x, y, width, height, speed,canvas) {
     this.x = x;
     this.y = y;
     this.width = width;
@@ -7,14 +7,10 @@ let Bullet = function (x, y, width, height, speed,image,canvas) {
     this.canvas=canvas;
     this.image=image;
     this.drawBullet = function () {
-        window.onload = function() {
-            let c = document.getElementById("myCanvas");
-            let ctx = c.getContext("2d");
-            let img = document.getElementById("bullet");
-            ctx.drawImage(img, this.x,this.y);
-        }
-    };
+        this.canvas.getContext("2d").drawImage(this.image, this.x, this.y)
+    }
     this.move = function () {
         this.y -= this.speed;
+
     }
 };
